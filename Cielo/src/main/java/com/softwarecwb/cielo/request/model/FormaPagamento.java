@@ -3,14 +3,18 @@ package com.softwarecwb.cielo.request.model;
 import java.io.Serializable;
 import java.util.Optional;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 import org.hibernate.validator.constraints.Length;
 
 import com.softwarecwb.cielo.request.model.enumerador.Bandeira;
 import com.softwarecwb.cielo.request.model.enumerador.CodigoProduto;
 
-
+@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlType(propOrder={"bandeira","codigoProduto","numeroParcelas"})
 public class FormaPagamento implements Serializable {
 
 	/**

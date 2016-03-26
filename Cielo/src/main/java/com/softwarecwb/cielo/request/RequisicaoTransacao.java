@@ -6,7 +6,6 @@ import java.io.StringWriter;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.annotation.XmlElement;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -14,12 +13,9 @@ import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.hibernate.cfg.Environment;
 
-import com.softwarecwb.cielo.request.model.DadosEC;
 import com.softwarecwb.cielo.response.RespostaTransacao;
 
 public abstract class RequisicaoTransacao {
-
-	private DadosEC dadosEc;
 
 	private static final int _1_SEGUNDO = 1000;
 
@@ -35,16 +31,6 @@ public abstract class RequisicaoTransacao {
 		httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(_CONNECTION_TIMEOUT);
 		httpClient.getHttpConnectionManager().getParams().setSoTimeout(_READ_TIMEOUT);
 		httpClient.getHttpConnectionManager().closeIdleConnections(_1_SEGUNDO);
-	}
-
-	@XmlElement(name = "dados-ec")
-	public DadosEC getDadosEc() {
-		return dadosEc;
-	}
-	
-	
-	public void setDadosEc(DadosEC dadosEc) {
-		this.dadosEc = dadosEc;
 	}
 
 	public RespostaTransacao enviarParaCielo(boolean debug) {
@@ -65,7 +51,7 @@ public abstract class RequisicaoTransacao {
 		try {
 			httpClient.executeMethod(httpMethod);
 			String respostaXml = httpMethod.getResponseBodyAsString();
-			
+
 			System.out.println(respostaXml);
 
 		} catch (HttpException e) {

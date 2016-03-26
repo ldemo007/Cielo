@@ -2,12 +2,15 @@ package com.softwarecwb.cielo.request.model;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 import org.hibernate.validator.constraints.Length;
 
-@XmlRootElement(name = "dados-ec")
+@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlType(propOrder={"numeroEstabelecimento","chave"})
 public class DadosEC implements Serializable {
 
 	/**

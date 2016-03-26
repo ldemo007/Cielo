@@ -3,13 +3,17 @@ package com.softwarecwb.cielo.request.model;
 import java.io.Serializable;
 import java.util.Optional;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 import org.hibernate.validator.constraints.Length;
 
 import com.softwarecwb.cielo.request.model.enumerador.Indicador;
 
-
+@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlType(propOrder={"numeroCartao","validade","indicador","codigoSeguranca","nomePortador","token"})
 public class DadosPortador implements Serializable {
 
 	/**
