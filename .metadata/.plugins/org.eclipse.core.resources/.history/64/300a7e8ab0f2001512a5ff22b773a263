@@ -1,5 +1,0 @@
-package com.softwarecwb.cielo.service;
-
-public interface IService {
-
-}

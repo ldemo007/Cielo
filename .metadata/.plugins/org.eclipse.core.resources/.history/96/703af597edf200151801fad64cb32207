@@ -1,7 +1,0 @@
-package com.softwarecwb.cielo.request;
-
-public abstract class Transacao {
-
-	
-	
-}

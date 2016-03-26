@@ -1,7 +1,0 @@
-package com.softwarecwb.cielo.request;
-
-import com.softwarecwb.cielo.RequisicaoTransacao;
-
-public class CancelarRequisicaoTransacao extends RequisicaoTransacao {
-
-}

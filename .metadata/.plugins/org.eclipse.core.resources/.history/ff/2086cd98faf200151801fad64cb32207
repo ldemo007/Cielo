@@ -1,5 +1,0 @@
-package com.softwarecwb.cielo.request.model.renumerador;
-
-public enum Idioma {
-	PT,EN,ES
-}

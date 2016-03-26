@@ -1,7 +1,0 @@
-package com.softwarecwb.cielo.model;
-
-import java.io.Serializable;
-
-public class DadosEC implements Serializable {
-
-}
