@@ -1,0 +1,7 @@
+package com.softwarecwb.cielo.request;
+
+import com.softwarecwb.cielo.RequisicaoTransacao;
+
+public class CapturarRequisicaoTransacao extends RequisicaoTransacao{
+
+}

@@ -1,0 +1,5 @@
+package com.softwarecwb.cielo.servico;
+
+public interface ICieloService {
+
+}

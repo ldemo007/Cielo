@@ -1,0 +1,27 @@
+package com.softwarecwb.cielo.service;
+
+import com.softwarecwb.cielo.model.response.Transacao;
+import com.softwarecwb.cielo.request.CapturarRequisicaoTransacao;
+
+public class CieloService implements ICieloService {
+
+	@Override
+	public Transacao CriarRequisicaoTransacao(com.softwarecwb.cielo.request.CriarRequisicaoTransacao criarTransacao) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Transacao VerificaRequisicaoTransacao(CapturarRequisicaoTransacao capturaTransacao) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Transacao CancelarRequisicaoTransacao(
+			com.softwarecwb.cielo.request.CancelarRequisicaoTransacao cancelarTransacao) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

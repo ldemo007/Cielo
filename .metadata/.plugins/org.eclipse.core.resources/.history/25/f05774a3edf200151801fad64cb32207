@@ -1,0 +1,39 @@
+package com.softwarecwb.cielo.request;
+
+import java.io.File;
+import java.io.StringWriter;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+
+public abstract class Transacao {
+	
+	public Transacao() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public String ToXML(Transacao transacao)
+	{
+		try {
+
+			File file = new File("C:\\Users\\ricar\\Documents\\file.xml");
+			JAXBContext jaxbContext = JAXBContext.newInstance(Transacao.class);
+			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+			// output pretty printed
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING,"ISO-8859-1");
+			
+			StringWriter writer = new StringWriter();
+			jaxbMarshaller.marshal(transacao,writer);
+			
+			return writer.toString();
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return "";
+		}
+		
+		
+	}
+}

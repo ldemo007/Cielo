@@ -1,0 +1,19 @@
+package com.softwarecwb.cielo.model.enumerador;
+
+public enum Moeda {
+
+	REAL(986);
+	
+	
+	public int valor;
+
+	private Moeda(int valor) {
+		this.valor = valor;
+	}
+	
+	public int getValor() {
+		return valor;
+	}
+	
+	
+}

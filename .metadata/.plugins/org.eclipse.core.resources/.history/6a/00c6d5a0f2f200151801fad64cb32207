@@ -1,0 +1,12 @@
+package com.softwarecwb.cielo.service;
+
+import com.softwarecwb.cielo.request.*;
+
+public interface ICieloService {
+
+	RequisicaoTransacao CriarRequisicaoTransacao(CriarRequisicaoTransacao criarTransacao);
+	
+	RequisicaoTransacao VerificaRequisicaoTransacao(CapturarRequisicaoTransacao capturaTransacao);
+	
+	RequisicaoTransacao CancelarRequisicaoTransacao(CancelarRequisicaoTransacao cancelarTransacao);
+}

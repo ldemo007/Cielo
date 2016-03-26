@@ -1,0 +1,29 @@
+package com.softwarecwb.cielo.service;
+
+import org.springframework.stereotype.Service;
+
+import com.softwarecwb.cielo.request.*;
+import com.softwarecwb.cielo.response.RespostaTransacao;
+
+@Service
+public class CieloService implements ICieloService {
+
+	@Override
+	public RespostaTransacao CriarRequisicaoTransacao(CriarRequisicaoTransacao criarTransacao) {	
+		
+		return criarTransacao.enviarParaCielo();
+	}
+
+	@Override
+	public RespostaTransacao VerificaRequisicaoTransacao(CapturarRequisicaoTransacao capturaTransacao) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RespostaTransacao CancelarRequisicaoTransacao(CancelarRequisicaoTransacao cancelarTransacao) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

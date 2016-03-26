@@ -1,0 +1,35 @@
+package com.softwarecwb.cielo.request;
+
+import java.io.StringWriter;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+
+public class RequisicaoTransacao {
+
+	public RequisicaoTransacao() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String ToXML() {
+		try {
+
+			JAXBContext jaxbContext = JAXBContext.newInstance(this.getClass());
+			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+			// output pretty printed
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING, "ISO-8859-1");
+
+			StringWriter writer = new StringWriter();
+			jaxbMarshaller.marshal(this, writer);
+
+			return writer.toString();
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return e.getMessage();
+		}
+
+	}
+}

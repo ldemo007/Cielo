@@ -1,0 +1,48 @@
+package com.softwarecwb.cielo;
+
+import java.io.File;
+import java.util.Optional;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.softwarecwb.cielo.model.DadosEC;
+import com.softwarecwb.cielo.model.DadosPedido;
+import com.softwarecwb.cielo.model.DadosPortador;
+import com.softwarecwb.cielo.model.RequisicaoTransacao;
+import com.softwarecwb.cielo.model.enumerador.Indicador;
+
+public class CieloApplication {
+
+	public static void main(String[] args) {
+		RequisicaoTransacao requisicaoTransacao = new RequisicaoTransacao();
+
+		requisicaoTransacao.setDadosEc(new DadosEC("1006993069", "25fbb997438630f30b112d033ce2e621b34f3"));
+		requisicaoTransacao.setDadosPortador(new DadosPortador("4012001038443335", "201620", Indicador.INFORMADO, "973",
+				"Jakeline Vasconcelos", null));
+		//requisicaoTransacao.setDadosPedido(new DadosPedido("133", new Double(123.65),null, dataHora, descricao, idioma, taxaEmbarque, softDescriptor));
+
+		try {
+
+			File file = new File("C:\\Users\\ricar\\Documents\\file.xml");
+			JAXBContext jaxbContext = JAXBContext.newInstance(RequisicaoTransacao.class);
+			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+			// output pretty printed
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING,"ISO-8859-1");
+			
+			jaxbMarshaller.marshal(requisicaoTransacao, file);
+			jaxbMarshaller.marshal(requisicaoTransacao, System.out);
+
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

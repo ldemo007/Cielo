@@ -1,0 +1,137 @@
+package com.softwarecwb.cielo.model;
+
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.Optional;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.softwarecwb.cielo.model.enumerador.Idioma;
+import com.softwarecwb.cielo.model.enumerador.Moeda;
+
+@XmlRootElement(name = "dados-pedido")
+public class DadosPedido implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Length(max = 20)
+	private String numeroPedido;
+
+	@Length(min = 1, max = 12)
+	private Double valor;
+
+	private Optional<Moeda> moeda;
+
+	private Date dataHora;
+
+	@Length(max = 1024)
+	private String descricao;
+
+	private Optional<Idioma> idioma;
+
+	@Length(min = 1, max = 9)
+	private int taxaEmbarque;
+
+	@Length(max = 13)
+	private String softDescriptor;
+
+	
+	public DadosPedido() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	public DadosPedido(String numeroPedido, Double valor, Optional<Moeda> moeda, Date dataHora, String descricao, Optional<Idioma> idioma,
+			int taxaEmbarque, String softDescriptor) {
+		super();
+		this.numeroPedido = numeroPedido;
+		this.valor = valor;
+		this.moeda = moeda;
+		this.dataHora = dataHora;
+		this.descricao = descricao;
+		this.idioma = idioma;
+		this.taxaEmbarque = taxaEmbarque;
+		this.softDescriptor = softDescriptor;
+	}
+
+
+
+	public String getNumeroPedido() {
+		return numeroPedido;
+	}
+
+	@XmlElement(name = "numero-pedido")
+	public void setNumeroPedido(String numeroPedido) {
+		this.numeroPedido = numeroPedido;
+	}
+
+	public Double getValor() {
+		return valor;
+	}
+
+	@XmlElement(name = "valor")
+	public void setValor(Double valor) {
+		this.valor = valor;
+	}
+
+	@XmlElement(name = "moeda")
+	public int getMoeda() {
+		return moeda.orElse(Moeda.REAL).getValor();
+	}
+
+	public void setMoeda(Optional<Moeda> moeda) {
+		this.moeda = moeda;
+	}
+
+	public Date getDataHora() {
+		return dataHora;
+	}
+
+	@XmlElement(name = "data-hora")
+	public void setDataHora(Date dataHora) {
+		this.dataHora = dataHora;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	@XmlElement(name = "descricao")
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	
+	public Optional<Idioma> getIdioma() {
+		return idioma;
+	}
+
+	@XmlElement(name = "idioma")
+	public void setIdioma(Optional<Idioma> idioma) {
+		this.idioma = idioma;
+	}
+
+	public int getTaxaEmbarque() {
+		return taxaEmbarque;
+	}
+
+	@XmlElement(name = "taxa-embarque")
+	public void setTaxaEmbarque(int taxaEmbarque) {
+		this.taxaEmbarque = taxaEmbarque;
+	}
+
+	public String getSoftDescriptor() {
+		return softDescriptor;
+	}
+
+	@XmlElement(name = "soft-descriptor")
+	public void setSoftDescriptor(String softDescriptor) {
+		this.softDescriptor = softDescriptor;
+	}
+
+}

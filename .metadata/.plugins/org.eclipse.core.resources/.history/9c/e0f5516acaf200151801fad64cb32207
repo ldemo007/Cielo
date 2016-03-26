@@ -1,0 +1,17 @@
+package com.softwarecwb.cielo.model;
+
+import java.io.Serializable;
+
+import com.softwarecwb.cielo.model.enumerador.Bandeira;
+
+public class FormaPagamento implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Bandeira bandeira;
+	
+	private CodigoProduto codigoProduto;
+}

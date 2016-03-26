@@ -1,0 +1,7 @@
+package com.softwarecwb;
+
+import org.springframework.hateoas.ResourceSupport;
+
+public class PedidoRecurso extends ResourceSupport {
+
+}

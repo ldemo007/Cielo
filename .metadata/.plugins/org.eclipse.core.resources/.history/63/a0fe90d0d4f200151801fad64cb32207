@@ -1,0 +1,51 @@
+package com.softwarecwb.cielo;
+
+import java.io.File;
+import java.sql.Date;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+
+import com.softwarecwb.cielo.model.DadosEC;
+import com.softwarecwb.cielo.model.DadosPedido;
+import com.softwarecwb.cielo.model.DadosPortador;
+import com.softwarecwb.cielo.model.FormaPagamento;
+import com.softwarecwb.cielo.model.RequisicaoTransacao;
+import com.softwarecwb.cielo.model.enumerador.Autorizar;
+import com.softwarecwb.cielo.model.enumerador.Bandeira;
+import com.softwarecwb.cielo.model.enumerador.CodigoProduto;
+import com.softwarecwb.cielo.model.enumerador.Indicador;
+
+public class CieloApplication {
+
+	public static void main(String[] args) {
+		RequisicaoTransacao requisicaoTransacao = new RequisicaoTransacao();
+
+		requisicaoTransacao.setDadosEc(new DadosEC("1006993069", "25fbb997438630f30b112d033ce2e621b34f3"));
+		requisicaoTransacao.setDadosPortador(new DadosPortador("4012001038443335", "201620", Indicador.INFORMADO, "973",
+				"Jakeline Vasconcelos", null));
+		requisicaoTransacao.setDadosPedido(new DadosPedido("123",12.52 , null, new Date(), null, null,null,"BNE"));
+		requisicaoTransacao.setFormaPagamento(new FormaPagamento(Bandeira.visa, CodigoProduto.CODIGO_A_VISTA,1));
+		requisicaoTransacao.setAutorizar(Autorizar.AUTORIZAR_SEM_PASSAR_POR_AUTENTICACAO);
+		requisicaoTransacao.setCapturar(false);
+		
+		try {
+
+			File file = new File("C:\\Users\\ricar\\Documents\\file.xml");
+			JAXBContext jaxbContext = JAXBContext.newInstance(RequisicaoTransacao.class);
+			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+			// output pretty printed
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING,"ISO-8859-1");
+			
+			jaxbMarshaller.marshal(requisicaoTransacao, file);
+			jaxbMarshaller.marshal(requisicaoTransacao, System.out);
+
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

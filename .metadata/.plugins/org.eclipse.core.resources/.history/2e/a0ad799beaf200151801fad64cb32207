@@ -1,0 +1,136 @@
+package com.softwarecwb.cielo.request.model;
+
+import java.util.UUID;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.softwarecwb.cielo.equest.model.renumerador.Autorizar;
+import com.softwarecwb.cielo.request.model.DadosEC;
+import com.softwarecwb.cielo.request.model.DadosPedido;
+import com.softwarecwb.cielo.request.model.DadosPortador;
+import com.softwarecwb.cielo.request.model.FormaPagamento;
+
+@XmlRootElement(name = "requisicao-transacao")
+@XmlType(propOrder = { "dadosEc", "dadosPortador", "dadosPedido", "formaPagamento", "urlRetorno", "autorizar",
+		"capturar", "campoLivre", "bin", "gerarToken" })
+public class RequisicaoTransacao {
+
+	@XmlAttribute(name = "id")
+	private UUID id = UUID.randomUUID();
+
+	@XmlAttribute(name = "version")
+	private String version = "1.2.1";
+
+	private DadosEC dadosEc;
+
+	private DadosPortador dadosPortador;
+
+	private DadosPedido dadosPedido;
+
+	private FormaPagamento formaPagamento;
+
+	@Length(max = 1024)
+	private String urlRetorno;
+
+	private Autorizar autorizar;
+
+	private boolean capturar;
+
+	private String campoLivre;
+
+	private String bin;
+
+	private boolean gerarToken;
+
+	public DadosEC getDadosEc() {
+		return dadosEc;
+	}
+
+	public void setDadosEc(DadosEC dadosEc) {
+		this.dadosEc = dadosEc;
+	}
+
+	public DadosPortador getDadosPortador() {
+		return dadosPortador;
+	}
+
+	public void setDadosPortador(DadosPortador dadosPortador) {
+		this.dadosPortador = dadosPortador;
+	}
+
+	public DadosPedido getDadosPedido() {
+		return dadosPedido;
+	}
+
+	public void setDadosPedido(DadosPedido dadosPedido) {
+		this.dadosPedido = dadosPedido;
+	}
+
+	public FormaPagamento getFormaPagamento() {
+		return formaPagamento;
+	}
+
+	public void setFormaPagamento(FormaPagamento formaPagamento) {
+		this.formaPagamento = formaPagamento;
+	}
+
+	@XmlElement(name = "autorizar")
+	public int getAutorizar() {
+		return autorizar.getValor();
+	}
+
+	public void setAutorizar(Autorizar autorizar) {
+		this.autorizar = autorizar;
+	}
+
+	public boolean isCapturar() {
+		return capturar;
+	}
+
+	@XmlElement(name = "capturar")
+	public void setCapturar(boolean capturar) {
+		this.capturar = capturar;
+	}
+
+	public String getCampoLivre() {
+		return campoLivre;
+	}
+
+	@XmlElement(name = "campo-livre")
+	public void setCampoLivre(String campoLivre) {
+		this.campoLivre = campoLivre;
+	}
+
+	public String getBin() {
+		return bin;
+	}
+
+	@XmlElement(name = "bin")
+	public void setBin(String bin) {
+		this.bin = bin;
+	}
+
+	public boolean isGerarToken() {
+		return gerarToken;
+	}
+
+	@XmlElement(name = "gerar-token")
+	public void setGerarToken(boolean gerarToken) {
+		this.gerarToken = gerarToken;
+	}
+
+	public String getUrlRetorno() {
+		return urlRetorno;
+	}
+
+	@XmlElement(name = "url-retorno")
+	public void setUrlRetorno(String urlRetorno) {
+		this.urlRetorno = urlRetorno;
+	}
+
+}

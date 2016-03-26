@@ -1,0 +1,7 @@
+package com.softwarecwb.model;
+
+import org.springframework.data.jpa.domain.AbstractPersistable;
+
+public class Item extends AbstractPersistable<Long> {
+
+}

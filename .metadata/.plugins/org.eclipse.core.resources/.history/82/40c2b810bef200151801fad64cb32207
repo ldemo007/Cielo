@@ -1,0 +1,5 @@
+package com.softwarecwb.cielo.model;
+
+public class DadosPedido {
+
+}

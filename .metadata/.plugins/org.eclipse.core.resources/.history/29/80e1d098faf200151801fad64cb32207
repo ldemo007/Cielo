@@ -1,0 +1,5 @@
+package com.softwarecwb.cielo.request.model.renumerador;
+
+public enum Bandeira {
+	visa,mastercard,diners,discover,elo,amex,jcb,aura
+}

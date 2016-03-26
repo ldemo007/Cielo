@@ -1,0 +1,37 @@
+package com.softwarecwb.cielo.model;
+
+import java.util.UUID;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "requisicao-transacao")
+public class RequisicaoTransacao {
+
+	@XmlElement(name = "id")
+	private UUID id = UUID.randomUUID();
+	
+	@XmlElement(name = "version")
+	private String version = "1.2.1";
+
+	private DadosEC dadosEc;
+
+	private DadosPortador dadosPortador;
+
+	public DadosEC getDadosEc() {
+		return dadosEc;
+	}
+
+	public void setDadosEc(DadosEC dadosEc) {
+		this.dadosEc = dadosEc;
+	}
+
+	public DadosPortador getDadosPortador() {
+		return dadosPortador;
+	}
+
+	public void setDadosPortador(DadosPortador dadosPortador) {
+		this.dadosPortador = dadosPortador;
+	}
+
+}

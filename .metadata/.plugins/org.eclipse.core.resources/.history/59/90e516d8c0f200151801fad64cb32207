@@ -1,0 +1,32 @@
+package com.softwarecwb.cielo.model;
+
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.Optional;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.softwarecwb.cielo.model.enumerador.Idioma;
+
+@XmlRootElement(name = "dados-pedido")
+public class DadosPedido implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private String numeroPedido;
+	
+	private Double valor;
+	
+	private Optional<Integer> moeda;
+	
+	private Date dataHora;
+	
+	private String descricao;
+	
+	private Idioma idioma;
+	
+
+}

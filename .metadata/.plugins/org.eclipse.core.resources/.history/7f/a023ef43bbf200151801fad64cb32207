@@ -1,0 +1,32 @@
+package com.softwarecwb.cielo;
+
+import java.util.Optional;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.softwarecwb.cielo.model.DadosEC;
+import com.softwarecwb.cielo.model.DadosPortador;
+import com.softwarecwb.cielo.model.RequisicaoTransacao;
+import com.softwarecwb.cielo.model.enumerador.Indicador;
+
+@SpringBootApplication
+public class CieloApplication implements CommandLineRunner{
+
+	public static void main(String[] args) {
+		SpringApplication.run(CieloApplication.class, args);
+	}
+
+	@Override
+	public void run(String... arg0) throws Exception {
+		
+		RequisicaoTransacao requisicaoTransacao = new RequisicaoTransacao();
+		
+		requisicaoTransacao.setDadosEc(new DadosEC("1006993069","25fbb997438630f30b112d033ce2e621b34f3"));
+		requisicaoTransacao.setDadosPortador(new DadosPortador("4012001038443335", 201620,Indicador.INFORMADO, "973", "Jakeline Vasconcelos",Optional.empty()));
+		
+	}
+	
+	
+}

@@ -1,0 +1,5 @@
+package com.softwarecwb.cielo.model.enumerador;
+
+public enum Moeda {
+
+}

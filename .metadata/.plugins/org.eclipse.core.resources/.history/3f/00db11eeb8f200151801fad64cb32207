@@ -1,0 +1,14 @@
+package com.softwarecwb.cielo.model;
+
+import java.util.UUID;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="requisicao-transacao")
+public class RequisicaoTransacao {
+
+	private UUID id;
+	private String version = "1.2.1";
+	
+	
+}
