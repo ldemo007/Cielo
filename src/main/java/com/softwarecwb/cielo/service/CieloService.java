@@ -1,7 +1,5 @@
 package com.softwarecwb.cielo.service;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import com.softwarecwb.cielo.request.CancelarRequisicaoTransacao;
@@ -18,7 +16,7 @@ public class CieloService implements ICieloService {
 	}
 
 	@Override
-	public RespostaTransacao VerificaRequisicaoTransacao(CapturarRequisicaoTransacao capturaTransacao, boolean debug) {
+	public RespostaTransacao CapturarRequisicaoTransacao(CapturarRequisicaoTransacao capturaTransacao, boolean debug) {
 		return capturaTransacao.enviarParaCielo(debug);
 	}
 

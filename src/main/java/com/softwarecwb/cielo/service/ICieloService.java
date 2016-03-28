@@ -7,7 +7,7 @@ public interface ICieloService {
 
 	RespostaTransacao CriarRequisicaoTransacao(CriarRequisicaoTransacao criarTransacao, boolean debug);
 	
-	RespostaTransacao VerificaRequisicaoTransacao(CapturarRequisicaoTransacao capturaTransacao,boolean debug);
+	RespostaTransacao CapturarRequisicaoTransacao(CapturarRequisicaoTransacao capturaTransacao,boolean debug);
 	
 	RespostaTransacao CancelarRequisicaoTransacao(CancelarRequisicaoTransacao cancelarTransacao ,boolean debug);
 }

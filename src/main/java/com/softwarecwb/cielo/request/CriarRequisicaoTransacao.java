@@ -1,8 +1,5 @@
 package com.softwarecwb.cielo.request;
 
-import java.util.UUID;
-
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
@@ -19,12 +16,6 @@ import com.softwarecwb.cielo.request.model.enumerador.Autorizar;
 @XmlType(propOrder = { "dadosEc","dadosPortador", "dadosPedido", "formaPagamento", "urlRetorno", "autorizar", "capturar",
 		"campoLivre", "bin", "gerarToken" })
 public class CriarRequisicaoTransacao extends RequisicaoTransacao {
-
-	@XmlAttribute(name = "id")
-	private UUID id = UUID.randomUUID();
-
-	@XmlAttribute(name = "versao")
-	private String version = "1.2.1";
 
 	private DadosEC dadosEc;
 	

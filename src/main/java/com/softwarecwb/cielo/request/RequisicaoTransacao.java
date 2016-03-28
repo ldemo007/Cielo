@@ -1,11 +1,17 @@
 package com.softwarecwb.cielo.request;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.UUID;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -14,8 +20,16 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import org.hibernate.cfg.Environment;
 
 import com.softwarecwb.cielo.response.RespostaTransacao;
+import com.softwarecwb.cielo.response.Transacao;
 
+@XmlTransient
 public abstract class RequisicaoTransacao {
+
+	@XmlAttribute(name = "id")
+	private UUID id = UUID.randomUUID();
+
+	@XmlAttribute(name = "versao")
+	private String version = "1.2.1";
 
 	private static final int _1_SEGUNDO = 1000;
 
@@ -50,10 +64,7 @@ public abstract class RequisicaoTransacao {
 
 		try {
 			httpClient.executeMethod(httpMethod);
-			String respostaXml = httpMethod.getResponseBodyAsString();
-
-			System.out.println(respostaXml);
-
+			return ToRespostaTransacao(httpMethod.getResponseBodyAsString());
 		} catch (HttpException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -62,6 +73,19 @@ public abstract class RequisicaoTransacao {
 		}
 
 		return null;
+	}
+
+	private RespostaTransacao ToRespostaTransacao(String xml) {
+		try {
+			JAXBContext jaxbContext = JAXBContext.newInstance(Transacao.class);
+			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+			Transacao jaxbElement = (Transacao)unmarshaller.unmarshal(new StringReader(xml));
+			return null;
+		} catch (JAXBException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+
 	}
 
 	private String ToXML() {
