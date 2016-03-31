@@ -1,4 +1,4 @@
-package com.softwarecwb.cielo.request;
+package com.softwarecwb.cielo.request.model.entity;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -6,11 +6,11 @@ import javax.xml.bind.annotation.XmlType;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.softwarecwb.cielo.request.model.DadosEC;
+import com.softwarecwb.cielo.request.action.Requisicao;
 
 @XmlRootElement(name = "requisicao-captura")
 @XmlType(propOrder = { "tid", "dadosEC", "valor" })
-public class CapturarRequisicaoTransacao extends RequisicaoTransacao{
+public class RequisicaoConsulta extends Requisicao{
 	
 	private String tid;
 

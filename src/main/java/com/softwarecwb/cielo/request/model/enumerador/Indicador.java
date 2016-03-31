@@ -1,17 +1,14 @@
 package com.softwarecwb.cielo.request.model.enumerador;
 
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlEnumValue;
+
+@XmlEnum(Integer.class)
 public enum Indicador {
-
-	NAO_INFORMADO(0), INFORMADO(1), ILEGIVEL(2), INEXISTENTE(9);
-
-	private final int valor;
-
-	private Indicador(int valor) {
-		this.valor = valor;
-	}
 	
-	public int getValor() {
-		return valor;
-	}
+	@XmlEnumValue(value = "0")NAO_INFORMADO,
+	@XmlEnumValue(value = "1")INFORMADO,
+	@XmlEnumValue(value = "2")ILEGIVEL,
+	@XmlEnumValue(value = "9")INEXISTENTE
 	
 }

@@ -1,4 +1,4 @@
-package com.softwarecwb.cielo.request.model;
+package com.softwarecwb.cielo.request.model.entity;
 
 import java.io.Serializable;
 import java.util.Optional;
@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.Length;
 import com.softwarecwb.cielo.request.model.enumerador.Indicador;
 
 @XmlAccessorType(XmlAccessType.PROPERTY)
-@XmlType(propOrder={"numeroCartao","validade","indicador","codigoSeguranca","nomePortador","token"})
+@XmlType(propOrder = { "numeroCartao", "validade", "indicador", "codigoSeguranca", "nomePortador", "token" })
 public class DadosPortador implements Serializable {
 
 	/**
@@ -52,61 +52,58 @@ public class DadosPortador implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	// GETTERS
 	@XmlElement(name = "numero")
-	public String getNumeroCartao() {
-		return numeroCartao;
-	}
-
-	@XmlElement(name = "indicador")
-	public int getIndicador() {
-		return indicador.getValor();
-	}
-
-	@XmlElement(name = "validade")
-	public String getValidade() {
-		return validade;
-	}
-
-	@XmlElement(name = "codigo-seguranca")
-	public String getCodigoSeguranca() {
-		return codigoSeguranca;
-	}
-
-	@XmlElement(name = "nome-portador")
-	public String getNomePortador() {
-		return nomePortador;
-	}
-
-	@XmlElement(name = "token")
-	public Optional<String> getToken() {
-		return token;
-	}
-
-	// SETTERS
 	public void setNumeroCartao(String numeroCartao) {
 		this.numeroCartao = numeroCartao;
 	}
 
-	public void setIndicador(Indicador indicador) {
-
-		this.indicador = indicador;
-	}
-
+	@XmlElement(name = "validade")
 	public void setValidade(String validade) {
 		this.validade = validade;
 	}
 
+	@XmlElement(name = "indicador")
+	public void setIndicador(Indicador indicador) {
+		this.indicador = indicador;
+	}
+
+	@XmlElement(name = "codigo-seguranca")
 	public void setCodigoSeguranca(String codigoSeguranca) {
 		this.codigoSeguranca = codigoSeguranca;
 	}
 
+	@XmlElement(name = "nome-portador")
 	public void setNomePortador(String nomePortador) {
 		this.nomePortador = nomePortador;
 	}
 
+	@XmlElement(name = "token")
 	public void setToken(Optional<String> token) {
 		this.token = token;
+	}
+
+	public String getNumeroCartao() {
+		return numeroCartao;
+	}
+
+	public String getValidade() {
+		return validade;
+	}
+
+	public Indicador getIndicador() {
+		return indicador;
+	}
+
+	public String getCodigoSeguranca() {
+		return codigoSeguranca;
+	}
+
+	public String getNomePortador() {
+		return nomePortador;
+	}
+
+	public Optional<String> getToken() {
+		return token;
 	}
 
 }
