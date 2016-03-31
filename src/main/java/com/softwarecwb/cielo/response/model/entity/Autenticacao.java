@@ -1,4 +1,4 @@
-package com.softwarecwb.cielo.response.model;
+package com.softwarecwb.cielo.response.model.entity;
 
 import java.util.Date;
 
@@ -16,12 +16,15 @@ public class Autenticacao {
 
 	private String mensagem;
 
-	private String dataHora;
+	private Date dataHora;
 
 	private String valor;
 
 	private int eci;
 
+	public Autenticacao() {
+		// TODO Auto-generated constructor stub
+	}
 	// SETTERS
 	@XmlElement(name = "codigo")
 	public void setCodigo(int codigo) {
@@ -34,14 +37,13 @@ public class Autenticacao {
 	}
 
 	@XmlElement(name = "data-hora")
-	public void setDataHora(String dataHora) {
+	public void setDataHora(Date dataHora) {
 		this.dataHora = dataHora;
 	}
 
 	@XmlElement(name = "valor")
 	public void setValor(String valor) {
-		StringBuilder stringBuilder = new StringBuilder(valor).insert(valor.length()-2,".");
-		this.valor = stringBuilder.toString();
+		this.valor = valor;
 	}
 
 	@XmlElement(name = "eci")
@@ -59,11 +61,11 @@ public class Autenticacao {
 	}
 
 	public Date getDataHora() {
-		return new Date(dataHora);
+		return dataHora;
 	}
 
-	public Double getValor() {
-		return Double.parseDouble(valor);
+	public String getValor() {
+		return valor;
 	}
 
 	public int getEci() {

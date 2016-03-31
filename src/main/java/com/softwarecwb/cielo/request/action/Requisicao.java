@@ -1,4 +1,4 @@
-package com.softwarecwb.cielo.request;
+package com.softwarecwb.cielo.request.action;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -6,7 +6,6 @@ import java.io.StringWriter;
 import java.util.UUID;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
@@ -17,13 +16,12 @@ import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.methods.PostMethod;
-import org.hibernate.cfg.Environment;
 
-import com.softwarecwb.cielo.response.RespostaTransacao;
-import com.softwarecwb.cielo.response.Transacao;
+import com.softwarecwb.cielo.response.model.entity.Erro;
+import com.softwarecwb.cielo.response.model.entity.Transacao;
 
 @XmlTransient
-public abstract class RequisicaoTransacao {
+public abstract class Requisicao {
 
 	@XmlAttribute(name = "id")
 	private UUID id = UUID.randomUUID();
@@ -47,48 +45,8 @@ public abstract class RequisicaoTransacao {
 		httpClient.getHttpConnectionManager().closeIdleConnections(_1_SEGUNDO);
 	}
 
-	public RespostaTransacao enviarParaCielo(boolean debug) {
+	public String CriarMensagemRequisicao() {
 
-		String url = null;
-
-		if (debug)
-			url = "https://qasecommerce.cielo.com.br/servicos/ecommwsec.do";
-		else
-			url = Environment.getProperties().getProperty("cielo.urlprod");
-
-		String mensagem = this.ToXML();
-		System.out.println(mensagem);
-
-		PostMethod httpMethod = new PostMethod(url);
-		httpMethod.addParameter("mensagem", mensagem);
-
-		try {
-			httpClient.executeMethod(httpMethod);
-			return ToRespostaTransacao(httpMethod.getResponseBodyAsString());
-		} catch (HttpException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
-	private RespostaTransacao ToRespostaTransacao(String xml) {
-		try {
-			JAXBContext jaxbContext = JAXBContext.newInstance(Transacao.class);
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			Transacao jaxbElement = (Transacao)unmarshaller.unmarshal(new StringReader(xml));
-			return null;
-		} catch (JAXBException e) {
-			System.out.println(e.getMessage());
-			return null;
-		}
-
-	}
-
-	private String ToXML() {
 		try {
 
 			JAXBContext jaxbContext = JAXBContext.newInstance(this.getClass());
@@ -104,7 +62,47 @@ public abstract class RequisicaoTransacao {
 			return writer.toString();
 		} catch (JAXBException e) {
 			e.printStackTrace();
-			return e.getMessage();
+			return null;
+		}
+	}
+
+	public String enviarPara(String mensagem) {
+
+		String url = "https://qasecommerce.cielo.com.br/servicos/ecommwsec.do";
+
+		PostMethod httpMethod = new PostMethod(url);
+		httpMethod.addParameter("mensagem", mensagem);
+
+		try {
+			httpClient.executeMethod(httpMethod);
+			return criarResposta(httpMethod.getResponseBodyAsString());
+		} catch (HttpException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	private String criarResposta(final String xml) {
+		try {
+			JAXBContext jaxbContextTransacao = JAXBContext.newInstance(Transacao.class);
+			Unmarshaller unmarshaller = jaxbContextTransacao.createUnmarshaller();
+			Transacao transacao = (Transacao) unmarshaller.unmarshal(new StringReader(xml));
+			return new Transacao().createResponse(transacao);
+		} catch (JAXBException e) {
+			JAXBContext jaxbContextErro;
+			try {
+				jaxbContextErro = JAXBContext.newInstance(Erro.class);
+				Unmarshaller unmarshaller = jaxbContextErro.createUnmarshaller();
+				Erro erro = (Erro)unmarshaller.unmarshal(new StringReader(xml));
+				return new Erro().createResponse(erro);
+			} catch (JAXBException e1) {
+				e1.printStackTrace();
+				return null;
+			}
+
 		}
 
 	}

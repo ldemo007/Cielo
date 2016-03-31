@@ -2,27 +2,29 @@ package com.softwarecwb.cielo.service;
 
 import org.springframework.stereotype.Service;
 
-import com.softwarecwb.cielo.request.CancelarRequisicaoTransacao;
-import com.softwarecwb.cielo.request.CapturarRequisicaoTransacao;
-import com.softwarecwb.cielo.request.CriarRequisicaoTransacao;
-import com.softwarecwb.cielo.response.RespostaTransacao;
+import com.softwarecwb.cielo.request.model.entity.RequisicaoCancelamento;
+import com.softwarecwb.cielo.request.model.entity.RequisicaoConsulta;
+import com.softwarecwb.cielo.request.model.entity.RequisicaoTransacao;
 
 @Service
-public class CieloService implements ICieloService {
+public class CieloService implements IService {
 
 	@Override
-	public RespostaTransacao CriarRequisicaoTransacao(CriarRequisicaoTransacao criarTransacao, boolean debug) {
-		return criarTransacao.enviarParaCielo(debug);
+	public String CriarRequisicaoTransacao(RequisicaoTransacao criarTransacao) {	
+		String mensagem = criarTransacao.CriarMensagemRequisicao();
+		return criarTransacao.enviarPara(mensagem);
 	}
 
 	@Override
-	public RespostaTransacao CapturarRequisicaoTransacao(CapturarRequisicaoTransacao capturaTransacao, boolean debug) {
-		return capturaTransacao.enviarParaCielo(debug);
+	public String CapturarRequisicaoTransacao(RequisicaoConsulta capturaTransacao) {
+		String mensagem = capturaTransacao.CriarMensagemRequisicao();
+		return capturaTransacao.enviarPara(mensagem);
 	}
 
 	@Override
-	public RespostaTransacao CancelarRequisicaoTransacao(CancelarRequisicaoTransacao cancelarTransacao, boolean debug) {
-		return cancelarTransacao.enviarParaCielo(debug);
+	public String CancelarRequisicaoTransacao(RequisicaoCancelamento cancelarTransacao) {
+		String mensagem = cancelarTransacao.CriarMensagemRequisicao();
+		return cancelarTransacao.enviarPara(mensagem);
 	}
 
 }

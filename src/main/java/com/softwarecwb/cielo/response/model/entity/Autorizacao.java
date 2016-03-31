@@ -1,4 +1,4 @@
-package com.softwarecwb.cielo.response.model;
+package com.softwarecwb.cielo.response.model.entity;
 
 import java.util.Date;
 
@@ -44,8 +44,7 @@ public class Autorizacao {
 
 	@XmlElement(name = "valor")
 	public void setValor(String valor) {
-		StringBuilder stringBuilder = new StringBuilder(valor).insert(valor.length()-2,".");
-		this.valor = stringBuilder.toString();
+		this.valor = valor;
 	}
 
 	@XmlElement(name = "lr")
@@ -76,8 +75,8 @@ public class Autorizacao {
 		return dataHora;
 	}
 
-	public Double getValor() {
-		return Double.parseDouble(valor);
+	public String getValor() {
+		return valor;
 	}
 
 	public int getLr() {

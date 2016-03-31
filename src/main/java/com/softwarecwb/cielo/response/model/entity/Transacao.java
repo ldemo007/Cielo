@@ -1,16 +1,16 @@
-package com.softwarecwb.cielo.response;
+package com.softwarecwb.cielo.response.model.entity;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.softwarecwb.cielo.request.model.DadosPedido;
-import com.softwarecwb.cielo.request.model.FormaPagamento;
-import com.softwarecwb.cielo.response.model.Autenticacao;
-import com.softwarecwb.cielo.response.model.Autorizacao;
+import com.softwarecwb.cielo.request.model.entity.DadosPedido;
+import com.softwarecwb.cielo.request.model.entity.FormaPagamento;
+import com.softwarecwb.cielo.response.action.RespostaTransacao;
+import com.softwarecwb.cielo.response.model.enumerator.StatusTransacao;
 
 @XmlRootElement(name = "transacao", namespace="http://ecommerce.cbmp.com.br")
-public class Transacao {
+public class Transacao extends RespostaTransacao {
 
 	private String versao;
 
@@ -24,7 +24,7 @@ public class Transacao {
 
 	private FormaPagamento formaPagamento;
 
-	private int status;
+	private StatusTransacao status;
 
 	private Autenticacao autenticacao;
 
@@ -53,7 +53,7 @@ public class Transacao {
 	}
 
 	@XmlElement(name = "status")
-	public void setStatus(int status) {
+	public void setStatus(StatusTransacao status) {
 		this.status = status;
 	}
 
@@ -91,7 +91,7 @@ public class Transacao {
 		return formaPagamento;
 	}
 
-	public int getStatus() {
+	public StatusTransacao getStatus() {
 		return status;
 	}
 
